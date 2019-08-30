@@ -14,8 +14,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass -w -r ./scss -o ./css"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
