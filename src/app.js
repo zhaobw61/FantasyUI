@@ -6,6 +6,9 @@ Vue.component('g-button',Button)
 Vue.component('g-icon',Icon)
 var app = new Vue({
   el:'#app',
-  components:{
-  }
+  data:{
+    loading1:false,
+    loading2:false,
+    loading3:false,
+  },
 })
