@@ -21,6 +21,9 @@ export default {
   vertical-align: middle;
   > .g-button {
     border-radius: 0;
+    &:not(:first-child){
+      margin-left: -1px;
+    }
     margin-left: -1px;
     &:first-child {
       border-top-left-radius: var(--border-radius);
