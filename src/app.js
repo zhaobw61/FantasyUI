@@ -3,14 +3,30 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 
-Vue.component('g-button',Button)
-Vue.component('g-icon',Icon)
-Vue.component('g-button-group',ButtonGroup)
+Vue.component('g-button', Button)
+Vue.component('g-icon', Icon)
+Vue.component('g-button-group', ButtonGroup)
 var app = new Vue({
-  el:'#app',
-  data:{
-    loading1:false,
-    loading2:false,
-    loading3:false,
+  el: '#app',
+  data: {
+    loading1: false,
+    loading2: false,
+    loading3: false,
   },
 })
+
+// 单元测试
+
+{
+  const Constructor = Vue.extend(Button)
+  const button = new Constructor({
+    propsData: {
+      icon: 'setting',
+      loading: true
+    }
+  })
+  button.$mount()
+  let useElement = button.$el.querySelector('use')
+  let href = useElement.getAttribute('xlink:href')
+  expect(href).to.eq('#i-loading')
+}
