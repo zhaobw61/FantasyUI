@@ -4,6 +4,7 @@
   "description": "> 这是在公司我封装的组件。放在网上希望更多人喜欢。",
   "main": "button.js",
   "dependencies": {
+    "chai": "^4.2.0",
     "parcel-bundler": "^1.12.3",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3"
@@ -27,6 +28,6 @@
   },
   "homepage": "https://github.com/zhaobw61/FantasyUI#readme",
   "alias": {
-    "vue" : "./node_modules/vue/dist/vue.common.js"
+    "vue": "./node_modules/vue/dist/vue.common.js"
   }
 }
