@@ -17,4 +17,4 @@
 - BDD：行为驱动开发
 - Assert：断言
 
-Vue UI 框架-初级版\5 框架搭建（下）5 视频 3 文章 1 问卷\2 学习资源\4
+./node_modules/.bin/parcel index.html
