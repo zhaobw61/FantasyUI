@@ -15,7 +15,13 @@ var app = new Vue({
     loading1: false,
     loading2: false,
     loading3: false,
+    message: 'asd'
   },
+  methods: {
+    inputChange(){
+      console.log('asd');
+    }
+  }
 })
 
 // 单元测试

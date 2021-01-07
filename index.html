@@ -39,6 +39,9 @@
 
 <body>
   <div id="app">
+    <g-input value="asd " @change="inputChange"></g-input>
+    <g-input v-model="message"></g-input>
+    <div>{{message}}</div>
     <g-input value="张三"></g-input>
     <g-input value="张4" :disabled="true"></g-input>
     <g-input value="张三error" :error="'填写用户名'"></g-input>
