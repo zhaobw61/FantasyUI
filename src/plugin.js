@@ -4,7 +4,6 @@ export default {
         Vue.prototype.$toast = function(message) {
             let Constructor = Vue.extend(Toast);
             let toast = new Constructor();
-            console.log('message', message);
             toast.$slots.default = [message];
             toast.$mount();
             document.body.appendChild(toast.$el);
