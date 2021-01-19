@@ -1,7 +1,10 @@
 <template>
-    <div class="toast">
-        <slot></slot>
-        <div class="line"></div>
+    <div class="toast" ref="wrapper">
+        <div class="message">
+            <slot v-if="!enableHtml"></slot>
+            <div v-else v-html="$slots.default[0]"></div>
+        </div>
+        <div class="line" ref="line"></div>
         <span v-if="closeButton" class="close" @click="onClickClose">{{closeButton.text}}</span>
     </div>
 </template>
@@ -23,38 +26,53 @@ export default {
             default(){
                 return {
                     text: '关闭',
-                    callback: (toast) => {
-                        toast.close();
-                    }
+                    callback: undefined
                 }
             }
+        },
+        enableHtml: {
+            type: Boolean,
+            default:false
         }
     },
     mounted () {
-        if(this.autoClose){
+        this.execAutoClose();
+        this.updateStyles();
+    },
+    methods: {
+        updateStyles() {
+            this.$nextTick(()=>{
+                this.$refs.line.style.height =
+                    `${this.$refs.wrapper.getBoundingClientRect().height}px`;
+                    console.log(this.$refs.line.style.height);
+            })
+        },
+        execAutoClose() {
+            if(this.autoClose){
             setTimeout(()=>{
                 this.close();
             }, this.autoCloseDelay*1000);
         }
-    },
-    methods: {
+        },
         close(){
             this.$el.remove();
             this.$destroy();
         },
         onClickClose() {
             this.close();
-            this.closeButton.callback();
+            if(this.closeButton && typeof this.closeButton.callback === 'function') {
+                this.closeButton.callback();
+            }
         }
     }
 }
 </script>
 <style scoped lang="scss">
     $font-size: 14px;
-    $toast-height: 40px;
+    $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
     .toast {
-        font-size: $font-size;height: $toast-height; line-height: 1.8;
+        font-size: $font-size;min-height: $toast-min-height; line-height: 1.8;
         position: fixed;top: 0; left: 50%;transform: translateX(-50%);display: flex;
         color: white;
         align-items: center;
@@ -62,6 +80,9 @@ export default {
         border-radius: 4px;
         box-shadow: 0 0 3px 0 rbga(0, 0, 0, 0.5);
         padding: 0 16px;
+        .message {
+            padding: 4px 0;
+        }
     }
     .close {
         padding-left: 16px;

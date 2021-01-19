@@ -30,7 +30,14 @@ var app = new Vue({
       console.log('asd');
     },
     showToast() {
-      this.$toast('test');
+      this.$toast('test',{
+        closeButton: {
+            text: '知道了',
+            callback () {
+                console.log('用户说知道了');
+            }
+        }
+      });
     }
   }
 })
