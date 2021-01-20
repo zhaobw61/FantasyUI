@@ -36,7 +36,8 @@ var app = new Vue({
             callback () {
                 console.log('用户说知道了');
             }
-        }
+        },
+        position: 'bottom'
       });
     }
   }
