@@ -12,7 +12,12 @@ export default {
     name: "GuluTabsHead",
     inject: ['eventBus'],
     created() {
-        this.$emit('update:selected', 'asd');
+        this.eventBus.$on('update:selected', (item, vm) => {
+            console.log(item, vm);
+            if(vm) {
+                
+            }
+        })
     }
 }
 </script>

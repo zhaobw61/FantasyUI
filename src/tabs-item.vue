@@ -29,6 +29,13 @@ export default {
             }
         }
     },
+    watch: {
+        active(){
+            if(this.active) {
+                this.eventBus.$emit('update:selected',this.name, this);
+            }
+        }
+    },
     created() {
         this.eventBus.$on('update:selected', (name)=>{
             this.active = name === this.name;
@@ -36,7 +43,7 @@ export default {
     },
     methods:{
         xxx(){
-            this.eventBus.$emit('update:selected',this.name);
+            this.eventBus.$emit('update:selected',this.name, this);
         }
     }
 }
