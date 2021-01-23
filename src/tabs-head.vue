@@ -40,6 +40,9 @@ export default {
         }
         > .actions-wrapper {
             margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 </style>
