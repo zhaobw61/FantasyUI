@@ -38,17 +38,20 @@
   <!-- style="background-color: rgba(255, 153, 203, 1);" -->
   <div id="app">
     <g-tabs :selected.sync="selectedTab">
-      <g-tab-head>
-        <g-tab-item name="woman">
+      <g-tabs-head>
+        <g-tabs-item name="woman">
           <g-icon name="settings"></g-icon> 美女
-        </g-tab-item>
-        <g-tab-item name="finance" disabled>
+        </g-tabs-item>
+        <g-tabs-item name="finance" disabled>
           财经
-        </g-tab-item>
-        <g-tab-item name="sports">
+        </g-tabs-item>
+        <g-tabs-item name="sports">
           体育
-        </g-tab-item>
-      </g-tab-head>
+        </g-tabs-item>
+        <template slot="actions">
+          <button>设置</button>
+        </template>
+      </g-tabs-head>
       <g-tabs-body>
         <g-tabs-pane name="woman">
           美女相关咨询
