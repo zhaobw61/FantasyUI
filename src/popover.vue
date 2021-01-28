@@ -53,6 +53,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+    $border-color: #333;
+    $border-radius: 4px;
     .popover {
         margin: 50px;
         display: inline-block;
@@ -61,8 +63,41 @@ export default {
     }
     .content-wrapper {
         position: absolute;
-        border: 1px solid red;
-        box-shadow: 0 0 3px rgba(0,0,0,0.5);
-        transform: translateY(-100%)
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+        transform: translateY(-100%);
+        margin-top: -10px;
+        padding: 0.5em 1em;
+        max-width: 20em;
+        word-break: break-all;
+        &::before{
+            content: '';
+            display: block;
+            border: 10px solid red;
+            border-top-color: black;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 100%;
+            left: 10px;
+        }
+        &::after{
+            content: '';
+            display: block;
+            border: 10px solid red;
+            border-top-color: white;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: calc(100% - 1px);
+            left: 10px;
+        }
     }
 </style>
