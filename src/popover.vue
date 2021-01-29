@@ -17,12 +17,51 @@ export default {
             visible: false
         }
     },
+    mounted () {
+        if(this.trigger === 'click') {
+            this.refs.popover.addEventListener('click', this.onClick);
+        } else {
+            this.refs.popover.addEventListener('mouseenter', this.open);
+            this.refs.popover.addEventListener('mouseleave', this.close);
+        }
+    },
+    destroyed() {
+        if(this.trigger === 'click') {
+            this.refs.popover.addEventListener('click', this.onClick);
+        } else {
+            this.refs.popover.addEventListener('mouseenter', this.open);
+            this.refs.popover.addEventListener('mouseleave', this.close);
+        }
+    },
+    computed: {
+        openEvent () {
+            if (this.trigger === 'click') {
+                return 'click';
+            } else {
+                return 'mouseenter';
+            }
+        },
+        closeEvent () {
+            if (this.trigger === 'click') {
+                return 'click';
+            } else {
+                return 'mouseleave';
+            }
+        }
+    },
     props: {
         position: {
             type: String,
             default: 'top',
             validator(value) {
                 return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
+            }
+        },
+        trigger: {
+            type: String,
+            default: 'click',
+            validator(value) {
+                return ['click', 'hover'].indexOf(value) >= 0;
             }
         }
     },
@@ -40,11 +79,11 @@ export default {
                 contentWrapper.style.top = top + height + window.scrollY + 'px';
             } else if(this.position == 'left') {
                 contentWrapper.style.left = left + window.scrollX + 'px';
-                contentWrapper.style.top = top + window.scrollY +
+                contentWrapper.style.top = top + window.scrollY -
                 (height - height2)/2 + 'px';
             } else if(this.position == 'right') {
                 contentWrapper.style.left = left + window.scrollX + width + 'px';
-                contentWrapper.style.top = top + window.scrollY +
+                contentWrapper.style.top = top + window.scrollY -
                 (height - height2)/2 + 'px';
             }
         },
@@ -90,7 +129,6 @@ export default {
         position: absolute;
         border: 1px solid $border-color;
         border-radius: $border-radius;
-        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
         padding: 0.5em 1em;
         max-width: 20em;
         word-break: break-all;
@@ -105,6 +143,7 @@ export default {
         &.position-top {
             transform: translateY(-100%);
             margin-top: -10px;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
             &::before, &::after {
                 left: 10px;
             }
@@ -120,6 +159,7 @@ export default {
         &.position-bottom {
             transform: 10px;
             margin-top: 10px;
+            filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.5));
             &::before, &::after {
                 left: 10px;
             }
@@ -135,6 +175,7 @@ export default {
         &.position-left {
             transform: translateX(-100%);
             margin-left: -10px;
+            filter: drop-shadow(1px 0px 1px rgba(0, 0, 0, 0.5));
             &::before, &::after {
                 left: 100%;
                 transform: translateY(-50%);
@@ -150,6 +191,7 @@ export default {
         }
         &.position-right {
             margin-left: 10px;
+            filter: drop-shadow(-1px 0px 1px rgba(0, 0, 0, 0.5));
             &::before, &::after {
                 transform: translateY(-50%);
                 top: 50%;
