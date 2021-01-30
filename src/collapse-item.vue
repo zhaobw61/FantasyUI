@@ -15,6 +15,9 @@ export default {
         title: {
             type: String,
             required: true
+        },
+        name: {
+            type: String
         }
     },
     data() {
@@ -24,9 +27,11 @@ export default {
     },
     inject: ['eventBus'],
     mounted() {
-        this.eventBus && this.eventBus.$on('update:selected', (vm)=>{
-            if(this != vm) {
+        this.eventBus && this.eventBus.$on('update:selected', (name)=>{
+            if(this.name != name) {
                 this.close();
+            }else {
+                this.show();
             }
         });
     },
@@ -35,12 +40,14 @@ export default {
             if(this.open) {
                 this.open = false;
             } else {
-                this.open = true;
-                this.eventBus && this.eventBus.$emit('update:selected', this);
+                this.eventBus && this.eventBus.$emit('update:selected', this.name);
             }
         },
         close() {
             this.open = false;
+        },
+        show() {
+            this.open = true;
         }
     }
 }
