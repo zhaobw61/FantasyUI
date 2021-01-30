@@ -1,6 +1,6 @@
 <template>
     <div class="collapse">
-        <slot v-bind:text="test"></slot>
+        <slot></slot>
     </div>
 </template>
 <script>
@@ -14,10 +14,6 @@ export default {
         },
         selected: {
             type: String
-        },
-        test: {
-            type: Number,
-            default: 1
         }
     },
     data () {
@@ -31,7 +27,11 @@ export default {
         }
     },
     mounted() {
-        this.eventBus.$emit('update:selected', this.selected)
+        this.eventBus.$emit('update:selected', this.selected);
+        this.eventBus.$on('update:selected', (name) => {
+            console.log(this.selected, name);
+            this.$emit('update:selected', name);
+        });
     }
 }
 </script>
