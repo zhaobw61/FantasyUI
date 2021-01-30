@@ -13,7 +13,7 @@ export default {
             default: false
         },
         selected: {
-            type: String
+            type: Array
         }
     },
     data () {
@@ -28,10 +28,20 @@ export default {
     },
     mounted() {
         this.eventBus.$emit('update:selected', this.selected);
-        this.eventBus.$on('update:selected', (name) => {
-            console.log(this.selected, name);
-            this.$emit('update:selected', name);
+        this.eventBus.$on('update:addSelected', (name) => {
+            this.selected.push(name);
+            this.eventBus.$emit('update:selected', this.selected);
+            this.$emit('update:selected', this.selected);
         });
+        this.eventBus.$on('update:removeSelected', (name) => {
+            let index = this.selected.indexOf(name);
+            this.selected.splice(index, 1);
+            this.eventBus.$emit('update:selected', this.selected);
+            this.$emit('update:selected', this.selected);
+        });
+        this.$children.forEach((vm) => {
+            vm.single = this.single;
+        })
     }
 }
 </script>

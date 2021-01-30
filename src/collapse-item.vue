@@ -27,9 +27,12 @@ export default {
     },
     inject: ['eventBus'],
     mounted() {
-        this.eventBus && this.eventBus.$on('update:selected', (name)=>{
-            if(this.name != name) {
-                this.close();
+        this.eventBus && this.eventBus.$on('update:selected', (names)=>{
+            console.log('names', names);
+            if(!names.includes(this.name)) {
+                if(this.single) {
+                    this.close();
+                }
             }else {
                 this.show();
             }
@@ -39,8 +42,9 @@ export default {
         toggle() {
             if(this.open) {
                 this.open = false;
+                this.eventBus && this.eventBus.$emit('update:removeSelected', this.name);
             } else {
-                this.eventBus && this.eventBus.$emit('update:selected', this.name);
+                this.eventBus && this.eventBus.$emit('update:addSelected', this.name);
             }
         },
         close() {
