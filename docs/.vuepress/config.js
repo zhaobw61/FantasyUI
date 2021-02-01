@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/FantasyUI/',
     title: 'UI框架',
     description: '一个好用的UI框架',
     themeConfig: {
