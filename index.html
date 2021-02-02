@@ -37,12 +37,12 @@
 <body>
   <!-- style="background-color: rgba(255, 153, 203, 1);" -->
   <div id="app" style="padding: 100px;">
-    <g-collapse :selected.sync="selectedVal" :single="single">
+    <g-cascader :source="source"></g-cascader>
+    <!-- <g-collapse :selected.sync="selectedVal" :single="single">
       <g-collapse-item title="标题1" name="1">div1</g-collapse-item>
       <g-collapse-item title="标题2" name="2">div1</g-collapse-item>
       <g-collapse-item title="标题3" name="3">div1</g-collapse-item>
-    </g-collapse>
-    {{selectedVal}}
+    </g-collapse> -->
     <!-- <g-popover position="bottom">
       <template slot="content">
         <div>test</div>

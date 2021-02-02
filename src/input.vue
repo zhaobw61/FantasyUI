@@ -39,7 +39,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import "var";
-$height: $input-height;
+// $height: $input-height;
 .wrapper {
     font-size: $font-size;
     display: inline-flex;
