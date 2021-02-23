@@ -2,36 +2,62 @@
   "name": "fantasyui",
   "version": "1.0.0",
   "description": "> 这是在公司我封装的组件。放在网上希望更多人喜欢。",
-  "main": "button.js",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
   "dependencies": {
-    "chai": "^4.2.0",
-    "chai-spies": "^1.0.0",
-    "parcel-bundler": "^1.12.3",
-    "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.3"
+    "core-js": "^3.9.0",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/component-compiler-utils": "^3.0.0",
-    "sass": "^1.22.10",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-plugin-babel": "^4.5.11",
+    "@vue/cli-plugin-eslint": "^4.5.11",
+    "@vue/cli-plugin-unit-mocha": "^4.5.11",
+    "@vue/cli-service": "^4.5.11",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/test-utils": "^1.1.3",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.3.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^1.19.1",
+    "sass": "^1.32.8",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/parcel index.html",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "mocha": true
+        }
+      }
+    ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zhaobw61/FantasyUI.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zhaobw61/FantasyUI/issues"
-  },
-  "homepage": "https://github.com/zhaobw61/FantasyUI#readme",
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
-  }
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

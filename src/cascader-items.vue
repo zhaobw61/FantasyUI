@@ -51,7 +51,7 @@ export default {
     height: 100%;
     & .left {
         height: 100%;
-        padding: .3em 0;
+        // padding: .3em 0;
     }
     & .right {
         height: 100%;
@@ -59,6 +59,7 @@ export default {
     }
     .label {
         padding: .3em 1em;
+        align-items:center;
         .icon {
             margin-left: 1em;
         }
