@@ -1,13 +1,15 @@
 <template>
     <div class="cascaderItems" :style="{height: height}">
         <div class="left">
-            <div class="label" v-for="item in items" :key="item.name" @click="leftSelected = item">
+            <div class="label" v-for="item in items" :key="item.name"
+                @click="onClickLabel(item)">
                 {{item.name}}
                 <icon class="icon" v-if="item.children" name="right"></icon>
             </div>
         </div>
         <div class="right" v-if="rightItems">
-            <cascader-items :items="rightItems"  :height="height"></cascader-items>
+            <cascader-items :items="rightItems" :height="height"
+                :level="level+1" :selected="selected" @update:selected="onUpateSelected"></cascader-items>
         </div>
     </div>
 </template>
@@ -23,6 +25,18 @@ export default {
         },
         height: {
             type: String
+        },
+        selected: {
+            type: Array,
+            default: ()=>{
+                return [];
+            }
+        },
+        level: {
+            type: Number,
+            default: ()=>{
+                return 0;
+            }
         }
     },
     data () {
@@ -32,13 +46,25 @@ export default {
     },
     computed: {
         rightItems(){
-            if(this.leftSelected && this.leftSelected.children) {
-                return this.leftSelected.children;
+            let currentSelected = this.selected[this.level]
+            if(currentSelected && currentSelected.children) {
+                return currentSelected.children;
             } else {
                 return null;
             }
         }
-    }
+    },
+    methods: {
+        onClickLabel(item) {
+            let copy =JSON.parse(JSON.stringify(this.selected));
+            copy[this.level] = item;
+            copy.splice(this.level + 1);
+            this.$emit('update:selected', copy);
+        },
+        onUpateSelected(newSelected) {
+            this.$emit('update:selected', newSelected);
+        }
+    },
 }
 </script>
 
