@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div>{{selected}}</div>
         <g-cascader :source="source"
             :selected="selected" @update:selected="selected = $event"></g-cascader>
     </div>
