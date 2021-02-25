@@ -46,6 +46,7 @@ export default {
     },
     computed: {
         rightItems(){
+            console.log('rightItems');
             let currentSelected = this.selected[this.level]
             if(currentSelected && currentSelected.children) {
                 return currentSelected.children;

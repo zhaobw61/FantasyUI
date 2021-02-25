@@ -28,6 +28,9 @@ export default {
             default: () => {
                 return [];
             }
+        },
+        loadData: {
+            type: Function
         }
     },
     data () {
@@ -58,7 +61,19 @@ export default {
     },
     methods: {
         onUpateSelected(newSelected) {
-            this.$emit('update:selected', newSelected)
+            this.$emit('update:selected', newSelected);
+            let lastItem = newSelected[newSelected.length - 1];
+            let updateSource = (result) => {
+                console.log('lastItem', lastItem);
+                console.log('this.source', this.source);
+                let toUpdate = this.source.filter(item => {
+                    console.log(item.id, lastItem.id);
+                    return item.id === lastItem.id;
+                })[0];
+                console.log('toUpdate', toUpdate);
+                this.$set(lastItem, 'children', result);
+            };
+            this.loadData(lastItem, updateSource); //回调
         }
     },
 }
