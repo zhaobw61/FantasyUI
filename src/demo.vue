@@ -1,53 +1,39 @@
 <template>
     <div>
-        <g-cascader :source="source"
-            :selected.sync="selected"
-            @update:selected="xxx"
-            :load-data="loadData"
-            ></g-cascader>
+        <g-slides>
+            <g-slides-item>
+                <div class="box">1</div>
+            </g-slides-item>
+            <g-slides-item>
+                <div class="box">2</div>
+            </g-slides-item>
+            <g-slides-item>
+                <div class="box">3</div>
+            </g-slides-item>
+        </g-slides>
     </div>
 </template>
 <script>
-import Cascader from './cascader'
-import db from './db'
-function ajax(parent_id = 0, success) {
-    let res =  db.filter(item => item.parent_id == parent_id);
-    let id = setTimeout(() => {
-        success(res);
-    }, 1000);
-    console.log('id', id);
-    return id;
-}
+import GSlides from './slides';
+import GSlidesItem from './slides-item';
 export default {
     name:'demo',
-    components: {
-        'g-cascader': Cascader
-    },
+    components: {GSlides, GSlidesItem},
     data() {
-        return {
-            selected:[],
-            source: []
-        }
-    },
-    created() {
-        ajax(0, (res)=>{
-            this.source = res;
-        })
-    },
-    methods: {
-        loadData(node, callback){
-            let {name, id, parent_id } = node;
-            console.log(name, id, parent_id);
-            ajax(id, (result) => {
-                callback(result);
-            })
-        },
-        xxx(selected){
-            console.log(selected);
-            // ajax(selected[0].id,(res)=>{
-            //     this.source = res;
-            // })
-        }
-    },
+        return {}
+    }
 }
 </script>
+<style scoped lang="scss">
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .box{
+        width: 200px;
+        height: 150px;
+        background: #ddd;
+        border: 1px solid red;
+    }
+</style>
